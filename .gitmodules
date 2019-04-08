@@ -1,0 +1,6 @@
+[submodule "APID"]
+	path = APID
+	url = https://github.com/CodeHz/APID
+[submodule "editline"]
+	path = editline
+	url = https://github.com/troglobit/editline
