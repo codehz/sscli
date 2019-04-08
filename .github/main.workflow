@@ -11,6 +11,6 @@ action "codehz/arch-cmake-builder@master" {
 action "JasonEtco/upload-to-release@master" {
   uses = "JasonEtco/upload-to-release@master"
   needs = ["codehz/arch-cmake-builder@master"]
-  args = "build/sscli"
+  args = "build/sscli application/x-executable"
   secrets = ["GITHUB_TOKEN"]
 }
