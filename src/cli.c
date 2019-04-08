@@ -17,6 +17,11 @@ static void output(char const *str) {
   fflush(stdout);
 }
 
+static void output_r(char const *str) {
+  printf("\33[s\33[2K\r%s\n%s%s\33[u", str, PROMPT, rl_line_buffer);
+  fflush(stdout);
+}
+
 static char *nextline(void) {
   static char *line_buffer = NULL;
   if (line_buffer)
@@ -24,7 +29,15 @@ static char *nextline(void) {
   return (line_buffer = readline(PROMPT));
 }
 
-static void methodres(char const *data, void *user) { output(data); }
+static void methodres(char const *data, void *user) {
+  char *saved = NULL;
+  for (char *temp = (char *)data;; temp = NULL) {
+    char *line = strtok_r(temp, "\n", &saved);
+    if (!line)
+      break;
+    output_r(line);
+  }
+}
 
 thrd_t input_thread, alt_thread;
 
