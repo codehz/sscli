@@ -30,3 +30,5 @@ target_link_directories(sscli PRIVATE ${EDITLINE_DIR}/lib)
 target_link_libraries(sscli apid)
 target_link_libraries(sscli -leditline)
 add_dependencies(sscli editline)
+
+install(TARGETS sscli RUNTIME DESTINATION bin)
